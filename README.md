@@ -1,21 +1,26 @@
-# React Router Example
+# Your First Headless WordPress Project
 
-How to make a Single Page Application with React Router.
+This starter project is a basic React SPA using React Router that consumes data from your WordPress WPGraphQL API. This repo is a teaching tool for the WP Engine Developer Relations team, or anyone interested in teaching or learning more about headless WordPress patterns.  
 
-### [View Tutorial](https://www.taniarascia.com/using-react-router-spa)
+This project assumes that you have the following requirements met:
+- A WordPress site (Check out [Local](https://localwp.com/) to create a local WP site)
+- [WPGraphQL](https://www.wpgraphql.com/) Plugin
+- [Advanced Custom Fields](https://www.advancedcustomfields.com/) and [WPGraphQL for ACF](https://www.wpgraphql.com/acf)(optional)
+- [WPGraphQL Smart Cache (beta)](https://github.com/wp-graphql/wp-graphql-smart-cache) (optional)
 
-## Purpose
+The `main` branch of this project is considered the complete version, but since this is a teaching tool, you can look at the different branches of this repository to see how we incorporate data from WordPress step-by-step across the application.
 
-Set up a router in React.
+## Step 0: Starting Point
 
-- `/` - root
-- `/:page_id` - page
-- `/categories/:category_id` - category
+## Step 1: Adding Apollo for Data Fetching
 
-## Author
+## Step 2: Query for Data on Home Page
 
-- [Tania Rascia](https://www.taniarascia.com)
+## Step 3: Query for Data on Post Details Page
 
-## License
 
-This project is open source and available under the [MIT License](LICENSE).
+
+## Credits
+
+- Thanks to Kellen Mace and Grace Erixon for creating the initial version of this app
+- Thanks to [Tania Rascia](https://www.taniarascia.com) for the [starting point using React Router](https://www.taniarascia.com/using-react-router-spa).
