@@ -19,7 +19,7 @@ You can access this waypoint by running `git checkout waypoint/step-one` in your
 
 During this step, we configure an Apollo client instance to pull data from our WordPress site by creating a file in `lib/apollo.js` with the following contents:
 
-`
+```
 import {
   ApolloClient,
   ApolloLink,
@@ -41,10 +41,11 @@ const client = new ApolloClient({
 
 export default client;
 
-`
+```
+
 With the client created, we then use the `ApolloProvider` component to make that data available throughout our component tree using hooks. Replace the contents of `App.js` with the following code:
 
-`
+```
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "./pages/HomePage";
@@ -65,7 +66,7 @@ export default function App() {
   );
 }
 
-`
+```
 
 ## Step 2: Query for Data on Home Page
 
