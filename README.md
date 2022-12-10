@@ -11,8 +11,13 @@ This project assumes that you have the following requirements met:
 The `main` branch of this project is considered the complete version, but since this is a teaching tool, you can look at the different branches of this repository to see how we incorporate data from WordPress step-by-step across the application.
 
 ## Step 0: Starting Point
+You can access the starting point for this tutorial through the `waypoint/start` by running `git checkout waypoint/start` in your terminal. At this point, all of our application's data is being sourced from the `dummy-data` directory. 
 
 ## Step 1: Adding Apollo for Data Fetching
+
+You can access this waypoint by running `git checkout waypoint/step-one` in your terminal.
+
+During this step, we configure an Apollo client instance to 
 
 ## Step 2: Query for Data on Home Page
 
