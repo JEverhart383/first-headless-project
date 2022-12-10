@@ -17,7 +17,55 @@ You can access the starting point for this tutorial through the `waypoint/start`
 
 You can access this waypoint by running `git checkout waypoint/step-one` in your terminal.
 
-During this step, we configure an Apollo client instance to 
+During this step, we configure an Apollo client instance to pull data from our WordPress site by creating a file in `lib/apollo.js` with the following contents:
+
+`
+import {
+  ApolloClient,
+  ApolloLink,
+  HttpLink,
+  InMemoryCache
+} from "@apollo/client";
+
+const link = ApolloLink.from([
+  new HttpLink({
+    uri: `https://democontenthub.wpengine.com/graphql`,
+    useGETForQueries: true
+  })
+]);
+
+const client = new ApolloClient({
+  link,
+  cache: new InMemoryCache()
+});
+
+export default client;
+
+`
+With the client created, we then use the `ApolloProvider` component to make that data available throughout our component tree using hooks. Replace the contents of `App.js` with the following code:
+
+`
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import PostPage from "./pages/PostPage";
+import "./styles.css";
+
+import { ApolloProvider } from "@apollo/client/react";
+import client from "./lib/apollo";
+
+export default function App() {
+  return (
+    <ApolloProvider client={client}>
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/blog/:slug" component={PostPage} />
+      </Switch>
+    </ApolloProvider>
+  );
+}
+
+`
 
 ## Step 2: Query for Data on Home Page
 
