@@ -1,33 +1,10 @@
 import React from "react";
 import PostCard from "../components/PostCard";
-import { gql, useQuery } from "@apollo/client";
-
-const GET_ALL_POSTS = gql`
-  query getAllPosts {
-    posts {
-      nodes {
-        databaseId
-        title
-        date
-        slug
-        author {
-          node {
-            name
-          }
-        }
-        featuredImage {
-          node {
-            altText
-            sourceUrl
-          }
-        }
-      }
-    }
-  }
-`;
+import { data } from "../dummy-data/posts";
 
 export default function PostsList() {
-  const { loading, error, data } = useQuery(GET_ALL_POSTS);
+  const loading = false;
+  const error = null;
 
   if (loading) return <p>Loading posts...</p>;
   if (error) return <p>Error :(</p>;
