@@ -68,6 +68,8 @@ export default function App() {
 
 ```
 
+You can read more about the React Router [Switch](https://v5.reactrouter.com/web/api/Switch) and [Route](https://v5.reactrouter.com/web/api/Route) components to get a understanding of how to include additional routes.
+
 ## Step 2: Query for Data on Home Page
 
 The data displayed on in the `HomePage` component is actually sourced and rendered inside of the `components/PostList.js` component. In this file, you will need to update the imports to include `gql` and `useQuery` from the `@apollo/client` package. From there, we format our query using `gql` and fetch the data using `useQuery` before rendering our `posts` using `PostCard` components.
