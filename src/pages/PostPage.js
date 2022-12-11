@@ -20,31 +20,42 @@ const GET_POST_BY_SLUG = gql`
           name
         }
       }
+      postResources{
+        blogPosts
+        	{
+            title
+            url
+          }
+        videos {
+          title
+          url
+        }
+      }
     }
   }
 `;
 
 export default function PostPage(props) {
-  const { loading, error, data } = useQuery(GET_POST_BY_SLUG, {
-    variables: {
-      id: props.match.params.slug
-    }
-  });
+ const { loading, error, data } = useQuery(GET_POST_BY_SLUG, {
+	variables: {
+		id: props.match.params.slug
+	}
+});
 
-  const postFound = Boolean(data?.post);
+ const postFound = Boolean(data?.post);
 
-  return (
-    <div className="page-container">
-      <Link to="/">← Home</Link>
-      {loading ? (
-        <p>Loading…</p>
-      ) : error ? (
-        <p>Error: {error.message}</p>
-      ) : !postFound ? (
-        <p>Post could not be found.</p>
-      ) : (
-        <PostPageContent post={data.post} />
-      )}
-    </div>
-  );
+ return (
+   <div className="page-container">
+     <Link to="/">← Home</Link>
+     {loading ? (
+       <p>Loading…</p>
+     ) : error ? (
+       <p>Error: {error.message}</p>
+     ) : !postFound ? (
+       <p>Post could not be found.</p>
+     ) : (
+       <PostPageContent post={data.post} />
+     )}
+   </div>
+ );
 }
