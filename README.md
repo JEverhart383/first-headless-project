@@ -70,6 +70,61 @@ export default function App() {
 
 ## Step 2: Query for Data on Home Page
 
+The data displayed on in the `HomePage` component is actually sourced and rendered inside of the `components/PostList.js` component. In this file, you will need to update the imports to include `gql` and `useQuery` from the `@apollo/client` package. From there, we format our query using `gql` and fetch the data using `useQuery` before rendering our `posts` using `PostCard` components.
+
+Update your `components/PostList.js` to the following code:
+
+```
+import React from "react";
+import PostCard from "../components/PostCard";
+import { gql, useQuery } from "@apollo/client";
+
+const GET_ALL_POSTS = gql`
+  query getAllPosts {
+    posts {
+      nodes {
+        databaseId
+        title
+        date
+        slug
+        author {
+          node {
+            name
+          }
+        }
+        featuredImage {
+          node {
+            altText
+            sourceUrl
+          }
+        }
+      }
+    }
+  }
+`;
+
+export default function PostsList() {
+ const { loading, error, data } = useQuery(GET_ALL_POSTS);
+
+ if (loading) return <p>Loading posts…</p>;
+ if (error) return <p>Error :(</p>;
+
+ const postsFound = Boolean(data?.posts.nodes.length);
+ if (!postsFound) {
+   return <p>No matching posts found.</p>;
+ }
+
+ return (
+   <div className="posts-list">
+     {data.posts.nodes.map((post) => (
+       <PostCard key={post.databaseId} post={post} />
+     ))}
+   </div>
+ );
+}
+
+```
+
 ## Step 3: Query for Data on Post Details Page
 
 
