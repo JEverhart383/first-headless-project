@@ -15,6 +15,8 @@ This tutorial is heavily based on this [crash course on getting started with Rea
 ## Step 0: Starting Point
 You can access the starting point for this tutorial through the `waypoint/start` branch by running `git checkout waypoint/start` in your terminal. At this point, all of our application's data is being sourced from the `dummy-data` directory. 
 
+You can also access [the CodeSandbox for this workshop](https://codesandbox.io/s/first-headless-wordpress-project-acf-wpgraphql-xr5ebt). It's recommended that you create a fork of this project so you can come back to the starting point if needed.
+
 ## Step 1: Adding Apollo for Data Fetching
 
 You can access this waypoint by running `git checkout waypoint/step-one` in your terminal.
