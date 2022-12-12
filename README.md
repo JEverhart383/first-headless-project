@@ -200,8 +200,9 @@ export default function PostPage(props) {
 
 
 
-## Step 3: Show ACF Fields in Post Page Content
+## Step 4: Show ACF Fields in Post Page Content
 
+Now that we have our basic post details page wired up, it's time to show our ACF data on those pages. We can create two variables called `haveResourcePosts` and `haveResourceVideos` to check whether or not we have ACF resources for a given post, and then we can render those items in a unified list. To complete this step, copy the code below into your `components/PostPageContent.js` file.
 
 ```
 import React from "react";
