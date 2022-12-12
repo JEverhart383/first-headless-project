@@ -7,7 +7,7 @@ import {
   
   const link = ApolloLink.from([
     new HttpLink({
-      uri: `https://democontenthub.wpengine.com/graphql`,
+      uri: `https://acfheadless.wpengine.com/graphql`,
       useGETForQueries: true
     })
   ]);

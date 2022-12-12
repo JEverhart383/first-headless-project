@@ -1,4 +1,4 @@
-# Your First Headless WordPress Project
+# Your First Headless WordPress Project with ACF and WPGraphQL
 
 This starter project is a basic React SPA using React Router that consumes data from your WordPress WPGraphQL API. This repo is a teaching tool for the WP Engine Developer Relations team, or anyone interested in teaching or learning more about headless WordPress patterns.  
 
@@ -9,6 +9,8 @@ This project assumes that you have the following requirements met:
 - [WPGraphQL Smart Cache (beta)](https://github.com/wp-graphql/wp-graphql-smart-cache) (optional)
 
 The `main` branch of this project is considered the complete version, but since this is a teaching tool, you can look at the different branches of this repository to see how we incorporate data from WordPress step-by-step across the application.
+
+This tutorial is heavily based on this [crash course on getting started with React and headless WP](https://developers.wpengine.com/blog/build-a-simple-headless-wordpress-app-with-react-wpgraphql).
 
 ## Step 0: Starting Point
 You can access the starting point for this tutorial through the `waypoint/start` branch by running `git checkout waypoint/start` in your terminal. At this point, all of our application's data is being sourced from the `dummy-data` directory. 
@@ -129,6 +131,141 @@ export default function PostsList() {
 
 ## Step 3: Query for Data on Post Details Page
 
+Now we should have a functioning home page, but if you click into any of the actual posts they all display the same data. To get this working, we need to use out `slug` route parameter to query our WordPress install.
+
+```
+import React from "react";
+import { Link } from "react-router-dom";
+import PostPageContent from "../components/PostPageContent";
+import { gql, useQuery } from "@apollo/client";
+
+const GET_POST_BY_SLUG = gql`
+  query getPostBySlug($id: ID!) {
+    post(id: $id, idType: SLUG) {
+      title
+      date
+      content
+      categories {
+        nodes {
+          slug
+          name
+        }
+      }
+      author {
+        node {
+          name
+        }
+      }
+      postResources{
+        blogPosts
+        	{
+            title
+            url
+          }
+        videos {
+          title
+          url
+        }
+      }
+    }
+  }
+`;
+
+export default function PostPage(props) {
+ const { loading, error, data } = useQuery(GET_POST_BY_SLUG, {
+	variables: {
+		id: props.match.params.slug
+	}
+});
+
+ const postFound = Boolean(data?.post);
+
+ return (
+   <div className="page-container">
+     <Link to="/">← Home</Link>
+     {loading ? (
+       <p>Loading…</p>
+     ) : error ? (
+       <p>Error: {error.message}</p>
+     ) : !postFound ? (
+       <p>Post could not be found.</p>
+     ) : (
+       <PostPageContent post={data.post} />
+     )}
+   </div>
+ );
+}
+
+```
+
+
+
+## Step 3: Show ACF Fields in Post Page Content
+
+
+```
+import React from "react";
+import { Link } from "react-router-dom";
+
+const formatDate = (date) => new Date(date).toLocaleDateString();
+
+export default function PostPageContent({ post }) {
+  const { date, title, content, author, categories, postResources } = post;
+  const haveCategories = Boolean(categories?.nodes?.length);
+  const haveResourcePosts = Boolean(postResources?.blogPosts?.length)
+  const haveResourceVideos = Boolean(postResources?.videos?.length)
+
+  return (
+    <article>
+      <h1>{title}</h1>
+      <p className="post-meta">
+        <span role="img" aria-label="writing hand">
+          ✍️
+        </span>{" "}
+        {author.node.name} on {formatDate(date)}
+      </p>
+      <div
+        className="post-content"
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
+      { (haveResourcePosts || haveResourceVideos) ? (
+        <div className="categories-list">
+          <h2>Post Resources</h2>
+          <ul>
+            { haveResourcePosts ? (postResources.blogPosts.map((post)=>{
+              return ( 
+               <li>📄 <a href={post.url} key={post.title}>{post.title}</a></li>
+               )
+            })) : null }
+
+            { haveResourceVideos ? (postResources.videos.map((video)=>{
+              return ( 
+               <li>🎥 <a href={video.url} key={video.title}>{video.title}</a></li>
+               )
+            })) : null }
+          </ul>
+        </div>
+      ) : null}
+      {haveCategories ? (
+        <div className="categories-list">
+          <h2>Categorized As</h2>
+          <ul>
+            {categories.nodes.map((category) => {
+              const { slug, name } = category;
+              return (
+                <Link to={`/category/${slug}`} key={slug}>
+                  <li key={slug}>{name}</li>
+                </Link>
+              );
+            })}
+          </ul>
+        </div>
+      ) : null}
+    </article>
+  );
+}
+
+```
 
 
 ## Credits
