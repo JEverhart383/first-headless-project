@@ -33,7 +33,7 @@ import {
 
 const link = ApolloLink.from([
   new HttpLink({
-    uri: `https://democontenthub.wpengine.com/graphql`,
+    uri: `https://acfheadless.wpengine.com/graphql`,
     useGETForQueries: true
   })
 ]);
@@ -277,7 +277,7 @@ export default function PostPageContent({ post }) {
 ```
 ## Deploy
 
-You can access this waypoint by running `git checkout waypoint/deploy` in your terminal.
+You can access this waypoint by running `git checkout deploy` in your terminal.
 
 Sign up for an [Atlas Sandbox Account](https://my.wpengine.com/signup?plan=headless-eval) to deploy your app. The sign up process asks for a credit card, but this does not get charged. It's only for fraud prevention purposes.
 
