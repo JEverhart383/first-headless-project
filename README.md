@@ -74,6 +74,8 @@ You can read more about the React Router [Switch](https://v5.reactrouter.com/web
 
 ## Step 2: Query for Data on Home Page
 
+You can access this waypoint by running `git checkout waypoint/step-two` in your terminal.
+
 The data displayed on in the `HomePage` component is actually sourced and rendered inside of the `components/PostList.js` component. In this file, you will need to update the imports to include `gql` and `useQuery` from the `@apollo/client` package. From there, we format our query using `gql` and fetch the data using `useQuery` before rendering our `posts` using `PostCard` components.
 
 Update your `components/PostList.js` to the following code:
@@ -130,6 +132,8 @@ export default function PostsList() {
 ```
 
 ## Step 3: Query for Data on Post Details Page
+
+You can access this waypoint by running `git checkout waypoint/step-three` in your terminal.
 
 Now we should have a functioning home page, but if you click into any of the actual posts they all display the same data. To get this working, we need to use out `slug` route parameter to query our WordPress install.
 
@@ -202,6 +206,8 @@ export default function PostPage(props) {
 
 ## Step 4: Show ACF Fields in Post Page Content
 
+You can access this waypoint by running `git checkout waypoint/step-four` in your terminal.
+
 Now that we have our basic post details page wired up, it's time to show our ACF data on those pages. We can create two variables called `haveResourcePosts` and `haveResourceVideos` to check whether or not we have ACF resources for a given post, and then we can render those items in a unified list. To complete this step, copy the code below into your `components/PostPageContent.js` file.
 
 ```
@@ -267,7 +273,31 @@ export default function PostPageContent({ post }) {
 }
 
 ```
+## Deploy
 
+You can access this waypoint by running `git checkout waypoint/deploy` in your terminal.
+
+Sign up for an [Atlas Sandbox Account](https://my.wpengine.com/signup?plan=headless-eval) to deploy your app. The sign up process asks for a credit card, but this does not get charged. It's only for fraud prevention purposes.
+
+This branch is ready to be deployed. To serve our React SPA in a node container we installed the `express` package, and modified the `npm run start` command to run `node server.js`, which should start our express server. 
+
+```
+
+const express = require('express');
+const path = require('path');
+const app = express();
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+app.listen(8080);
+
+```
+
+Ideally, you would swap out the URL here to the WPGraphQL endpoint you create. You can follow our [getting started guide on deploying from your own repository](https://developers.wpengine.com/docs/atlas/getting-started/deploy-from-existing-repo).
 
 ## Credits
 
