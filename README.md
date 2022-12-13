@@ -16,6 +16,13 @@ To get started, do one of the following:
 - Open [the CodeSandbox for this workshop](https://codesandbox.io/s/first-headless-wordpress-project-acf-wpgraphql-xr5ebt). It's a good idea to create a fork of this project so you can come back to the starting point if needed.
 - Fork this repository or clone locally using `git clone https://github.com/JEverhart383/first-headless-project.git`
 
+For this workshop, you can use the following endpoints:
+- REST API Base URL: https://acfheadless.wpengine.com/wp-json/wp/v2/posts
+- WPGraphQL URL: https://acfheadless.wpengine.com/graphql
+- WPGraphQL Backup URL: https://api.headlesswp.info/graphql
+
+Please be a good community member and treat these resource nicely so that everyone can learn 🥳
+
 
 ## Step 0: Starting Point
 You can access the starting point for this tutorial through the `waypoint/start` branch by running `git checkout waypoint/start` in your terminal. At this point, all of our application's data is being sourced from the `dummy-data` directory. 
