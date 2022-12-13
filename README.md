@@ -306,6 +306,11 @@ app.listen(8080);
 
 Ideally, you would swap out the URL here to the WPGraphQL endpoint you create. You can follow our [getting started guide on deploying from your own repository](https://developers.wpengine.com/docs/atlas/getting-started/deploy-from-existing-repo).
 
+## Want to Learn More?
+To get more content from the WP Engine developer relations team, you can [read tutorials on our website](https://developers.wpengine.com/) or [watch on our YouTube channel](https://www.youtube.com/channel/UCh1WuL54XFb9ZI6m6goFv1g). Our [Headless WordPress Developer Roadmap](https://developers.wpengine.com/roadmap) builds on the concepts you learned here today and fills in some background on a few key technologies like React and GraphQL.
+
+If you're on Discord, join the 700+ developers in [the headless WordPress Discord community](https://developers.wpengine.com/discord). This is a great place to ask questions, and stay updated on community events like this one.
+
 ## Credits
 
 - Thanks to Kellen Mace and Grace Erixon for creating the initial version of this app
