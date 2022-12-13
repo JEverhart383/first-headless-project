@@ -12,10 +12,13 @@ The `main` branch of this project is considered the complete version, but since 
 
 This tutorial is heavily based on this [crash course on getting started with React and headless WP](https://developers.wpengine.com/blog/build-a-simple-headless-wordpress-app-with-react-wpgraphql).
 
+To get started, do one of the following: 
+- Open [the CodeSandbox for this workshop](https://codesandbox.io/s/first-headless-wordpress-project-acf-wpgraphql-xr5ebt). It's a good idea to create a fork of this project so you can come back to the starting point if needed.
+- Fork this repository or clone locally using `git clone https://github.com/JEverhart383/first-headless-project.git`
+
+
 ## Step 0: Starting Point
 You can access the starting point for this tutorial through the `waypoint/start` branch by running `git checkout waypoint/start` in your terminal. At this point, all of our application's data is being sourced from the `dummy-data` directory. 
-
-You can also access [the CodeSandbox for this workshop](https://codesandbox.io/s/first-headless-wordpress-project-acf-wpgraphql-xr5ebt). It's recommended that you create a fork of this project so you can come back to the starting point if needed.
 
 ## Step 1: Adding Apollo for Data Fetching
 
@@ -279,7 +282,9 @@ export default function PostPageContent({ post }) {
 
 You can access this waypoint by running `git checkout deploy` in your terminal.
 
-Sign up for an [Atlas Sandbox Account](https://my.wpengine.com/signup?plan=headless-eval) to deploy your app. The sign up process asks for a credit card, but this does not get charged. It's only for fraud prevention purposes.
+[Atlas](https://wpengine.com/atlas/) is WP Engine's headless WordPress hosting platform, where an app consists of a WordPress install and a Node.js hosting container, powered by modern JAMstack developer workflows. 
+
+You can sign up for an [Atlas Sandbox Account](https://my.wpengine.com/signup?plan=headless-eval) to deploy your app. The sign up process asks for a credit card, but this does not get charged. It's only for fraud prevention purposes.
 
 This branch is ready to be deployed. To serve our React SPA in a node container we installed the `express` package, and modified the `npm run start` command to run `node server.js`, which should start our express server. 
 
